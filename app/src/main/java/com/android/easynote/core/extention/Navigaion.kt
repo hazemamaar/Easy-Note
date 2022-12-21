@@ -28,7 +28,22 @@ fun LifecycleOwner.navigateSafe(directions: NavDirections, navOptions: NavOption
     if (canNavigate(navController, mView)) navController.navigate(directions, navOptions)
 
 }
-fun LifecycleOwner.navigateSafe(@IdRes navFragmentRes: Int, bundle: Bundle? = null) {
+
+fun LifecycleOwner.popBack() {
+    val navController: NavController?
+    val mView: View?
+    if (this is Fragment) {
+        navController = findNavController()
+        mView = view
+    } else {
+        val activity = this as Activity
+        navController = activity.findNavController(R.id.fragment_container)
+        mView = currentFocus
+    }
+    if (canNavigate(navController, mView)) navController.popBackStack()
+
+}
+fun LifecycleOwner.navigateSafe(@IdRes navFragmentRes: Int, bundle: Bundle? = null, navOptions: NavOptions? = null) {
     val navController: NavController?
     val mView: View?
     if (this is Fragment) {
@@ -42,7 +57,7 @@ fun LifecycleOwner.navigateSafe(@IdRes navFragmentRes: Int, bundle: Bundle? = nu
     if (canNavigate(navController, mView)) {
         val currentDest = navController.currentDestination?.id
         if (currentDest != navFragmentRes)
-            navController.navigate(navFragmentRes, bundle)
+            navController.navigate(navFragmentRes, bundle,navOptions)
     }
 }
 
@@ -60,4 +75,10 @@ private fun canNavigate(controller: NavController, view: View?): Boolean {
         Log.e("can'tNavigate", "can'tNavigate: ", )
         false
     }
+}
+
+fun LifecycleOwner.popUpCurrentFragment(): NavOptions? {
+    return if (this is Fragment) NavOptions.Builder()
+        .setPopUpTo(findNavController().currentDestination?.id!!, true).build()
+    else null
 }

@@ -73,6 +73,12 @@ dependencies {
     //lottie for animation
     implementation 'com.airbnb.android:lottie:4.2.2'
 
+    // Easy Permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    //imagePicker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
 }
 kapt {
     correctErrorTypes = true

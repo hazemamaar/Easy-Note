@@ -1,9 +1,11 @@
 package com.android.easynote.core.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
@@ -23,6 +25,7 @@ abstract class BaseFragment <B : ViewBinding, VM : ViewModel> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = bindView()
         binding = _binding!!
         return binding.root
@@ -32,13 +35,20 @@ abstract class BaseFragment <B : ViewBinding, VM : ViewModel> : Fragment() {
         onFragmentReady()
     }
     override fun onDestroyView() {
-        _binding = null
+        _binding=null
         super.onDestroyView()
     }
-    override fun onResume() {
-        super.onResume()
-    }
 
-
+//    fun pickImage(
+//        permissionManager: PermissionManager,
+//        permissionLauncher: ActivityResultLauncher<Array<String>>?,
+//        launcher: ActivityResultLauncher<Intent>
+//    ) {
+//        if (permissionManager.hasAllFilePickerPermissions()) {
+//            FileManager.pickSingleImage(this, launcher)
+//        } else {
+//            permissionLauncher?.launch(permissionManager.getAllImagePermissions())
+//        }
+//    }
 
 }

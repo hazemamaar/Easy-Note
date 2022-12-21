@@ -12,8 +12,12 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.launch
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
@@ -76,5 +80,15 @@ fun <B : ViewBinding> LifecycleOwner.bindView(container: ViewGroup? = null): B {
         }
         val invoke: B = inflateMethod.invoke(null, layoutInflater, container, false) as B
         invoke
+    }
+}
+
+fun <T : Any?, L : SharedFlow<T>> LifecycleOwner.observe(sharedFlow: L, body: (T) -> Unit) {
+    lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            sharedFlow.collect {
+                body.invoke(it)
+            }
+        }
     }
 }

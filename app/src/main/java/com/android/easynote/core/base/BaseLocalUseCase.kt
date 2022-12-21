@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 * Response: can also return type which is the result of the local execution.
 *
 * */
-// if Response get from local database
 //Use this class if you want to manage the local DB
+@Suppress("UNCHECKED_CAST")
 abstract class BaseLocalUseCase<Response : Any,MapIt : Any,in Params> {
 
     //map class from response to the result needed in View
@@ -25,10 +25,10 @@ abstract class BaseLocalUseCase<Response : Any,MapIt : Any,in Params> {
   operator fun invoke(params: Params? = null,coroutineScope: CoroutineScope, onResult: (MapIt) -> Unit = {}) {
       coroutineScope.launch(Dispatchers.Default) {
           run(params).collect {
-              if (isSave)
+              if (isSave) {
                   onResult.invoke( saveToLocal(params!! as Response))
-              else {
-                  val mapped = mapper(req = it)
+              } else {
+                  val mapped = mapper(it)
                   onResult.invoke(mapped)
               }
           }

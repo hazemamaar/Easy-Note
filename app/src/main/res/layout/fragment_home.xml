@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryDark"
-    tools:context=".ui.fragments.HomeFragment">
+    tools:context=".ui.fragments.home.HomeFragment">
 
 
     <TextView
@@ -48,9 +48,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_view"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginStart="@dimen/_5sdp"
-        app:layout_goneMarginEnd="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_3sdp"
+        app:layout_goneMarginEnd="@dimen/_3sdp"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"

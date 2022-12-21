@@ -12,31 +12,30 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.android.easynote.ui.fragments.HomeFragment"
+        android:name="com.android.easynote.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_createNoteFragment"
             app:destination="@id/createNoteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_lockDialog"
+            app:destination="@id/lockDialog" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
-        android:name="com.android.easynote.ui.fragments.CreateNoteFragment"
+        android:name="com.android.easynote.ui.fragments.operation.OperationsFragment"
         android:label="fragment_create_note"
         tools:layout="@layout/fragment_create_note" >
         <action
             android:id="@+id/action_createNoteFragment_to_lockDialog"
             app:destination="@id/lockDialog" />
         <argument
-            android:name="lockCode"
-            app:argType="string" />
+            android:name="note"
+            app:argType="com.android.easynote.data.entities.NoteDto" />
     </fragment>
     <dialog
         android:id="@+id/lockDialog"
         android:name="com.android.easynote.ui.fragments.LockDialog"
-        android:label="LockDialog" >
-        <action
-            android:id="@+id/action_lockDialog_to_createNoteFragment"
-            app:destination="@id/createNoteFragment" />
-    </dialog>
+        android:label="LockDialog" />
 </navigation>
