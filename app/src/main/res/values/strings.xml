@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">easy note</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottom_bar">bottom bar</string>
+    <string name="easy_note">Easy Note</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="back">back</string>
+    <string name="done_note">done note</string>
+    <string name="lock_note">lock note</string>
+    <string name="pin_note">pin note</string>
+    <string name="img_color">image color</string>
+    <string name="title">Title</string>
+    <string name="enter_notes">Enter Notes</string>
+    <string name="notes">Notes</string>
+    <string name="lock">Lock</string>
+</resources>

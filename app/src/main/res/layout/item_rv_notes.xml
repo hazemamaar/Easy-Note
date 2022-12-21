@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/_12sdp"
+        app:cardElevation="@dimen/_5sdp"
+        android:layout_margin="@dimen/_12sdp"
+        app:cardBackgroundColor="@color/blueDark"
+        >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:autofillHints=""
+            android:fontFamily="@font/bree_serif"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:text="@string/title"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:textSize="@dimen/_22ssp"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/notes_description_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:autofillHints=""
+            android:fontFamily="@font/calligraffitti"
+            android:text="@string/notes"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintTop_toBottomOf="@id/title_tv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

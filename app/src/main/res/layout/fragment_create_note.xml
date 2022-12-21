@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primaryDark"
+    tools:context=".ui.fragments.CreateNoteFragment">
+<ImageView
+    android:id="@+id/back"
+    android:layout_width="@dimen/_23sdp"
+    android:layout_height="@dimen/_27sdp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:src="@drawable/back"
+    android:layout_marginStart="@dimen/_6sdp"
+    android:layout_marginTop="@dimen/_13sdp"
+    android:padding="@dimen/_3sdp"
+    android:clickable="true"
+    android:focusable="true"
+    android:contentDescription="@string/back" />
+
+    <ImageButton
+        android:id="@+id/done"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/done_note"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:padding="@dimen/_3sdp"
+        android:background="@color/black"
+        android:contentDescription="@string/done_note"
+        android:clickable="true"
+        android:focusable="true" />
+    <ImageView
+        android:id="@+id/pin"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintEnd_toStartOf="@id/done"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/pin_note"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:padding="@dimen/_3sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/pin_note" />
+
+    <ImageView
+        android:id="@+id/lock"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintEnd_toStartOf="@id/pin"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/lock_note"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:padding="@dimen/_3sdp"
+        android:shadowColor="@color/lightGreyDark"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/lock_note" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/choiceColor_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lock"
+        tools:itemCount="10"
+        tools:listitem="@layout/color_rv_item" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:autofillHints=""
+        android:fontFamily="@font/bree_serif"
+        android:hint="@string/title"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/_22ssp"
+        app:layout_constraintTop_toBottomOf="@id/choiceColor_rv"
+        tools:ignore="LabelFor"
+        tools:layout_editor_absoluteX="19dp" />
+
+    <EditText
+        android:id="@+id/notes_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:autofillHints=""
+        android:fontFamily="@font/calligraffitti"
+        android:hint="Enter Node"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:ignore="LabelFor"
+        android:layout_marginStart="@dimen/_10sdp"
+        tools:layout_editor_absoluteX="13dp" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="7sp">-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteBlue"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sdp"-->
+<!--                android:layout_height="33dp"-->
+<!--                android:background="@drawable/notes_color_blue" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteBlue"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteCyan"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_cyan" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteCyan"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteGreen"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_green" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteGreen"-->
+<!--                android:layout_width="17dp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteOrange"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_orange" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteOrange"-->
+<!--                android:layout_width="16dp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNotePurple"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_purple" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNotePurple"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteRed"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_red" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteRed"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteYellow"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_yellow" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteYellow"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteBrown"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_brown" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteBrown"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fNoteIndigo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="3sp">-->
+
+<!--            <View-->
+<!--                android:layout_width="33sp"-->
+<!--                android:layout_height="33sp"-->
+<!--                android:background="@drawable/notes_color_indigo" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgNoteIndigo"-->
+<!--                android:layout_width="20sp"-->
+<!--                android:layout_height="20sp"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:tint="@color/black" />-->
+
+<!--        </FrameLayout>-->
+
+
+<!--    </LinearLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>

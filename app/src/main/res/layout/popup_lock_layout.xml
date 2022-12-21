@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGreyDark"
+    app:cardElevation="@dimen/_6sdp"
+    app:cardCornerRadius="@dimen/_12sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGreyDark">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lock_anamition" />
+
+        <com.chaos.view.PinView
+            android:id="@+id/codeLock"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:cursorVisible="true"
+            android:inputType="number"
+            android:itemBackground="@color/lightGreyDark"
+            android:padding="@dimen/_6sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            app:cursorWidth="@dimen/_1sdp"
+            app:itemCount="4"
+            app:itemHeight="@dimen/_30sdp"
+            app:itemRadius="@dimen/_6sdp"
+            app:itemSpacing="@dimen/_10sdp"
+            app:itemWidth="@dimen/_30sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animation_view"
+            app:lineColor="@color/white"
+            app:lineWidth="@dimen/_2sdp"
+            app:viewType="rectangle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/lock_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/codeLock"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_18sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cornerRadius="@dimen/_10sdp"
+            android:text="@string/lock"
+            android:backgroundTint="@color/blueDark"
+            app:elevation="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textSize="@dimen/_13sdp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</androidx.cardview.widget.CardView>

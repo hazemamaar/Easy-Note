@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_2sdp"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <FrameLayout
+            android:id="@+id/fNoteColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            tools:ignore="UselessParent">
+
+            <View
+                android:id="@+id/circle_view"
+                android:layout_width="@dimen/_27sdp"
+                android:layout_height="@dimen/_27sdp"
+                android:background="@drawable/notes_color_blue" />
+
+            <ImageView
+                android:id="@+id/imgNoteColor"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_gravity="center"
+                app:tint="@color/black"
+                android:contentDescription="@string/img_color" />
+
+        </FrameLayout>
+
+
+</LinearLayout>

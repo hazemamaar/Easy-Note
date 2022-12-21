@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/note_nav"
+    app:startDestination="@id/homeFragment">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.android.easynote.ui.activity.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.android.easynote.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.android.easynote.ui.fragments.CreateNoteFragment"
+        android:label="fragment_create_note"
+        tools:layout="@layout/fragment_create_note" >
+        <action
+            android:id="@+id/action_createNoteFragment_to_lockDialog"
+            app:destination="@id/lockDialog" />
+        <argument
+            android:name="lockCode"
+            app:argType="string" />
+    </fragment>
+    <dialog
+        android:id="@+id/lockDialog"
+        android:name="com.android.easynote.ui.fragments.LockDialog"
+        android:label="LockDialog" >
+        <action
+            android:id="@+id/action_lockDialog_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+    </dialog>
+</navigation>
