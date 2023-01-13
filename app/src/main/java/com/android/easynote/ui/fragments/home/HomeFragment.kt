@@ -23,12 +23,12 @@ import org.koin.android.ext.android.inject
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
-    lateinit var notesAdapter: NotesAdapter
-    var notesList: MutableList<NoteDto> = mutableListOf()
+    private val notesAdapter: NotesAdapter by inject()
     override val mViewModel: HomeViewModel by inject()
+    var xCode:String ?=null
     private lateinit var navController: NavController
     private lateinit var noteT: NoteDto
-
+   private lateinit var notesList:MutableList<NoteDto>
     override fun onFragmentReady() {
         navController = findNavController()
         navigateToCreateNote()
@@ -48,6 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     note))
             } else {
                 noteT = note
+                xCode = noteT.lock
                 note.lock.toString().log("hazzzzz")
                 navigateSafe(HomeFragmentDirections.actionHomeFragmentToLockDialog())
 
@@ -55,11 +56,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<String>("key")
             ?.observe(viewLifecycleOwner) {
-                if (noteT.lock == it) {
+                if (xCode == it) {
                     GlobalScope.launch(Dispatchers.Main) {
                         navigateSafe(HomeFragmentDirections.actionHomeFragmentToCreateNoteFragment(
                             note = noteT))
-                        noteT.lock = null
+                        xCode = null
                     }
                 }
 
@@ -68,7 +69,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
     private fun setUpRv() = binding.apply {
-        notesAdapter = NotesAdapter()
         note_rv.setHasFixedSize(true)
         note_rv.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -133,7 +133,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         mViewModel.viewState.onEach { action ->
             when (action) {
                 is HomeAction.GetNoteList -> {
-                    notesList = action.noteList.sortedByDescending { it.pin }.toMutableList()
+                    notesList=action.noteList.toMutableList()
                     notesAdapter.noteList = notesList
                 }
                 else -> {}

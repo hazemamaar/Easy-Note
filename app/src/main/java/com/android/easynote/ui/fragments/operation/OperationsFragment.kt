@@ -33,7 +33,8 @@ import pub.devrel.easypermissions.EasyPermissions
 class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsViewModel>(),
     EasyPermissions.PermissionCallbacks,
     EasyPermissions.RationaleCallbacks {
-    private lateinit var colorAdapter: ColorAdapter
+    private val colorAdapter: ColorAdapter by inject()
+
     private var color: String? = BACKGROUND_CARD_COLOR
     private var pinValue: Int = PIN
     override val mViewModel: OperationsViewModel
@@ -55,6 +56,8 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
         getLockCode()
         doneEditOrCreate()
         onEditNote()
+        args.note.lock.toString().log("hazem")
+        args.note.title.toString().log("hazem")
         binding.imageSelect.setOnClickListener {
             readStorageTask()
         }
@@ -86,7 +89,6 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     }
 
     private fun setUpRv() = binding.apply {
-        colorAdapter = ColorAdapter(requireContext())
         choiceColorRv.setHasFixedSize(true)
         choiceColorRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -114,18 +116,22 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
             title = binding.title.text.toString(),
             color = color.toString(),
             pin = pinValue,
+            lock = lockCode,
             noteText = binding.notesDescription.text.toString(),
             imgPath = selectedImagePath,
         )
         if (args.note.id != 0) {
             var notes =note.copy(id = args.note.id)
-            if(lockCode.length < 2 || lockCode == "null") {
-                notes = notes.copy( lock = args.note.lock)
-            }else{
-                notes = notes.copy( lock = lockCode)
-            }
+//            args.note.lock.toString().log("hazem1")
+//            if(lockCode.length < 2 || lockCode == "null") {
+//                notes = notes.copy( lock = args.note.lock)
+//            }else{
+//                notes = notes.copy( lock = lockCode)
+//            }
+            args.note.lock.toString().log("hazem2")
             mViewModel.editeNote(notes)
         } else {
+            lockCode.toString().log("hazem2")
             mViewModel.createNote(note)
         }
         observeOn()

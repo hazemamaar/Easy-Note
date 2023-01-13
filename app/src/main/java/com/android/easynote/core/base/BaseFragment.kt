@@ -1,11 +1,9 @@
 package com.android.easynote.core.base
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
@@ -19,15 +17,13 @@ abstract class BaseFragment <B : ViewBinding, VM : ViewModel> : Fragment() {
     protected abstract val mViewModel: VM
 
     private var _binding: B? = null
-    lateinit var binding: B
+    val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = bindView()
-        binding = _binding!!
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

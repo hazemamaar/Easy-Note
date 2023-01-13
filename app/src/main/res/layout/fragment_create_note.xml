@@ -122,13 +122,16 @@
 
         <ImageView
             android:id="@+id/image_select"
-            android:layout_width="@dimen/_115sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
             app:layout_constraintTop_toBottomOf="@id/notes_description"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:src="@drawable/dropimage"
             android:contentDescription="Drop_Your_Image" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

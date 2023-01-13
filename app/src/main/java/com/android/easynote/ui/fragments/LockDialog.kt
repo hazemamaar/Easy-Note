@@ -26,7 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class LockDialog : DialogFragment()  {
     private var _binding: PopupLockLayoutBinding? = null
     private val binding get() = _binding!!
-    var sLockCode:String ?=null
+    private lateinit var sLockCode:String
     @SuppressLint("UseGetLayoutInflater")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = PopupLockLayoutBinding.inflate(LayoutInflater.from(requireContext()))
@@ -46,11 +46,9 @@ class LockDialog : DialogFragment()  {
                 if (code!!.length < 3) {
                     toast("please enter fully lock code")
                 } else {
-                    val bundle = Bundle()
-                    bundle.putString("lockCode", code.toString())
                     sLockCode = code.toString()
                     val navController = findNavController()
-                    navController.previousBackStackEntry?.savedStateHandle?.set("key", code.toString())
+                    navController.previousBackStackEntry?.savedStateHandle?.set("key", sLockCode)
                     navController.popBackStack()
 //                    navigateSafe(R.id.createNoteFragment, bundle,popUpCurrentFragment())
                 }

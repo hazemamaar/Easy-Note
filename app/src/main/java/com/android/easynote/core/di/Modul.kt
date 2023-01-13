@@ -2,6 +2,7 @@ package com.android.easynote.core.di
 
 import android.app.Application
 import androidx.room.Room
+import com.android.easynote.core.helpers.AndroidSortNotes
 import com.android.easynote.data.Repo.LocalRepo
 import com.android.easynote.utils.Constant.DB
 import com.android.easynote.data.local.NoteDatabase
@@ -9,6 +10,8 @@ import com.android.easynote.domain.DeleteNoteUseCase
 import com.android.easynote.domain.EditNoteUseCase
 import com.android.easynote.domain.GetAllNotesUseCase
 import com.android.easynote.domain.InsertNoteUseCase
+import com.android.easynote.ui.adapter.ColorAdapter
+import com.android.easynote.ui.adapter.NotesAdapter
 import com.android.easynote.ui.fragments.operation.OperationsViewModel
 import com.android.easynote.ui.fragments.home.HomeViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -28,10 +31,21 @@ val notesModule = module {
     single { provideDataBase(androidApplication()) }
     single { provideDao(get()) }
     factory { LocalRepo(get()) }
-    factory{ GetAllNotesUseCase(get())}
+    factory {AndroidSortNotes()}
+    factory { ColorAdapter(androidApplication()) }
+
+}
+val viewModelModule= module{
+    viewModel { OperationsViewModel(get(),get()) }
+    viewModel { HomeViewModel(get(),get()) }
+}
+val adaptersModule= module{
+    factory { NotesAdapter() }
+}
+val useCaseModule= module{
+    factory{ GetAllNotesUseCase(get(),get()) }
     factory{ InsertNoteUseCase(get())}
     factory{ DeleteNoteUseCase(get())}
     factory{ EditNoteUseCase(get()) }
-    viewModel { OperationsViewModel(get(),get()) }
-    viewModel { HomeViewModel(get(),get()) }
+
 }
