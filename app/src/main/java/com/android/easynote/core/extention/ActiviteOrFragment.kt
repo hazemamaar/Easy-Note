@@ -28,7 +28,8 @@ fun Activity.hideKeyboard() =
 
 fun View.hideKeyboard() = (this.context as? Activity)?.hideKeyboard()
 
-
+fun View.gone()= run { this.visibility=View.GONE }
+fun View.visible()= run { this.visibility=View.VISIBLE }
 fun Fragment.snackBar(message: String) {
     requireView().hideKeyboard()
     Snackbar.make(

@@ -6,7 +6,6 @@ import android.app.Activity
 import android.graphics.Color
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,8 +21,6 @@ import com.android.easynote.utils.Constant.PIN
 import com.android.easynote.utils.Constant.READ_STORAGE_PERM
 import com.github.dhaval2404.imagepicker.ImagePicker
 import kotlinx.android.synthetic.main.fragment_create_note.*
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -34,14 +31,11 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     EasyPermissions.PermissionCallbacks,
     EasyPermissions.RationaleCallbacks {
     private val colorAdapter: ColorAdapter by inject()
-
+    private var isAllFabVisible:Boolean =false
     private var color: String? = BACKGROUND_CARD_COLOR
     private var pinValue: Int = PIN
     override val mViewModel: OperationsViewModel
             by inject()
-
-    // Permission Private Read & Write
-
     private var selectedImagePath = ""
     private lateinit var navController: NavController
     private val args: OperationsFragmentArgs by navArgs()
@@ -56,12 +50,23 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
         getLockCode()
         doneEditOrCreate()
         onEditNote()
+        allFabGone()
         args.note.lock.toString().log("hazem")
         args.note.title.toString().log("hazem")
         binding.imageSelect.setOnClickListener {
             readStorageTask()
         }
+        binding.addImgRecord.shrink()
+        binding.addImgRecord.setOnClickListener {
+            if(!isAllFabVisible){
+                allFabVisible()
+                binding.addImgRecord.extend()
+            }else{
+                allFabGone()
+                binding.addImgRecord.shrink()
+            }
 
+        }
         binding.pin.setOnClickListener {
             pinValue = 1
         }
@@ -105,11 +110,6 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
             ?.observe(viewLifecycleOwner) {
                 lockCode = it
             }
-
-    //    private fun checkEditOrCreate() :Boolean{
-//
-//
-//    }
     @SuppressLint("SuspiciousIndentation")
     private fun doneEditOrCreate() = binding.done.setOnClickListener {
         val note = NoteDto(
@@ -173,16 +173,28 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
 
     private fun pickImageFromGallery() {
         ImagePicker.with(this)
-            .compress(1024)         //Final image size will be less than 1 MB(Optional)
+            .compress(1024)
             .maxResultSize(1080,
-                1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                1080)
             .createIntent { intent ->
                 registerResult.launch(intent)
             }
     }
 
-
-
+   private fun allFabGone(){
+     binding.addImageFab.gone()
+       binding.addRecordFab.gone()
+       binding.addRecordText.gone()
+       binding.addImageText.gone()
+       isAllFabVisible=false
+   }
+    private fun allFabVisible(){
+        binding.addImageFab.visible()
+        binding.addRecordFab.visible()
+        binding.addRecordText.visible()
+        binding.addImageText.visible()
+        isAllFabVisible=true
+    }
     private val registerResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.data != null) {
