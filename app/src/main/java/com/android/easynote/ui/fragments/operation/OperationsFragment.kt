@@ -16,7 +16,6 @@ import com.android.easynote.core.extention.*
 import com.android.easynote.data.entities.NoteDto
 import com.android.easynote.databinding.FragmentCreateNoteBinding
 import com.android.easynote.ui.adapter.ColorAdapter
-import com.android.easynote.ui.fragments.home.HomeAction
 import com.android.easynote.utils.Constant.BACKGROUND_CARD_COLOR
 import com.android.easynote.utils.Constant.PIN
 import com.android.easynote.utils.Constant.READ_STORAGE_PERM
@@ -37,6 +36,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     private var pinValue: Int = PIN
     override val mViewModel: OperationsViewModel
             by inject()
+
     private var selectedImagePath = ""
     private lateinit var navController: NavController
     private val args: OperationsFragmentArgs by navArgs()
@@ -127,7 +127,6 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
         }
         observeOn()
     }
-
     private fun observeOn(){
         mViewModel.apply {
             observe(mViewModel.viewState){ action ->
@@ -141,18 +140,12 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
             is OperationsAction.CreateNote -> if(action.insertId>= 1) snackBar("AddDone")
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
     private fun hasReadStoragePerm(): Boolean {
         return EasyPermissions.hasPermissions(
             requireContext(),
             android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
-
     private fun readStorageTask() {
         if (hasReadStoragePerm()) {
 
@@ -204,9 +197,6 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
                 }
             }
         }
-
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -221,6 +211,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     }
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
