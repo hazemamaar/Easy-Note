@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 
 interface Action
 
-abstract class BaseViewModel<T:Action> : ViewModel() {
+abstract class BaseViewModel<T : Action> : ViewModel() {
+
     private val nextAction = MutableSharedFlow<T>()
     val viewState: SharedFlow<T> = nextAction
 

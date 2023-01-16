@@ -16,6 +16,7 @@ import com.android.easynote.core.extention.*
 import com.android.easynote.data.entities.NoteDto
 import com.android.easynote.databinding.FragmentCreateNoteBinding
 import com.android.easynote.ui.adapter.ColorAdapter
+import com.android.easynote.ui.fragments.home.HomeAction
 import com.android.easynote.utils.Constant.BACKGROUND_CARD_COLOR
 import com.android.easynote.utils.Constant.PIN
 import com.android.easynote.utils.Constant.READ_STORAGE_PERM
@@ -51,9 +52,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
         doneEditOrCreate()
         onEditNote()
         allFabGone()
-        args.note.lock.toString().log("hazem")
-        args.note.title.toString().log("hazem")
-        binding.imageSelect.setOnClickListener {
+        binding.addImageFab.setOnClickListener {
             readStorageTask()
         }
         binding.addImgRecord.shrink()
@@ -121,29 +120,28 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
             imgPath = selectedImagePath,
         )
         if (args.note.id != 0) {
-            var notes =note.copy(id = args.note.id)
-//            args.note.lock.toString().log("hazem1")
-//            if(lockCode.length < 2 || lockCode == "null") {
-//                notes = notes.copy( lock = args.note.lock)
-//            }else{
-//                notes = notes.copy( lock = lockCode)
-//            }
-            args.note.lock.toString().log("hazem2")
+            val notes =note.copy(id = args.note.id)
             mViewModel.editeNote(notes)
         } else {
-            lockCode.toString().log("hazem2")
             mViewModel.createNote(note)
         }
         observeOn()
     }
+
     private fun observeOn(){
-        observe(mViewModel.viewState){ action ->
-            when(action) {
-                is OperationsAction.EditNote -> if(action.editId>= 1) snackBar("EditDone")
-                is OperationsAction.CreateNote -> if(action.insertId>= 1) snackBar("AddDone")
+        mViewModel.apply {
+            observe(mViewModel.viewState){ action ->
+                handleUiState(action)
             }
         }
     }
+    private fun handleUiState(action: OperationsAction) {
+        when (action) {
+            is OperationsAction.EditNote -> if(action.editId>= 1) snackBar("EditDone")
+            is OperationsAction.CreateNote -> if(action.insertId>= 1) snackBar("AddDone")
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
     }
@@ -151,7 +149,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     private fun hasReadStoragePerm(): Boolean {
         return EasyPermissions.hasPermissions(
             requireContext(),
-            android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA
+            android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
 
@@ -172,6 +170,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     }
 
     private fun pickImageFromGallery() {
+        "picker is ready".log("hazem")
         ImagePicker.with(this)
             .compress(1024)
             .maxResultSize(1080,
@@ -182,7 +181,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     }
 
    private fun allFabGone(){
-     binding.addImageFab.gone()
+       binding.addImageFab.gone()
        binding.addRecordFab.gone()
        binding.addRecordText.gone()
        binding.addImageText.gone()
@@ -205,6 +204,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
                 }
             }
         }
+
 
 
     override fun onRequestPermissionsResult(

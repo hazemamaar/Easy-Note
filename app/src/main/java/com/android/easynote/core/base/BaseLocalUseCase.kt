@@ -26,7 +26,7 @@ abstract class BaseLocalUseCase<Response : Any,MapIt : Any,in Params> {
       coroutineScope.launch(Dispatchers.Default) {
           run(params).collect {
               if (isSave) {
-                  onResult.invoke( saveToLocal(params!! as Response))
+                  onResult.invoke(saveToLocal(params as Response))
               } else {
                   val mapped = mapper(it)
                   onResult.invoke(mapped)

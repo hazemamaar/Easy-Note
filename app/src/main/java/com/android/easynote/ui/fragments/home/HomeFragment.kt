@@ -23,29 +23,51 @@ import org.koin.android.ext.android.inject
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
+
     private val notesAdapter: NotesAdapter by inject()
     override val mViewModel: HomeViewModel by inject()
-    var xCode:String ?=null
+    var xCode: String? = null
     private lateinit var navController: NavController
     private lateinit var noteT: NoteDto
-   private lateinit var notesList:MutableList<NoteDto>
+    private lateinit var notesList: MutableList<NoteDto>
     override fun onFragmentReady() {
         navController = findNavController()
         navigateToCreateNote()
         setUpRv()
-        getAllNotes()
+        mViewModel.getAllData()
         removeItemTouch()
         editNotes()
+        subscribeToObservers()
+    }
 
+    private fun subscribeToObservers() {
+        mViewModel.apply {
+            observe(mViewModel.viewState) {
+                handleUiState(it)
+            }
+        }
+    }
 
+    private fun handleUiState(action: HomeAction) {
+        when (action) {
+            is HomeAction.GetNoteList ->  {
+            notesList = action.noteList.toMutableList()
+            notesAdapter.noteList = notesList
+        }
+            is HomeAction.OnRemove -> TODO()
+            else -> {}
+        }
     }
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun editNotes() {
         notesAdapter.setOnItemClickListener { note ->
             if (note.lock == "" || note.lock == null) {
-                navigateSafe(HomeFragmentDirections.actionHomeFragmentToCreateNoteFragment(
-                    note))
+                navigateSafe(
+                    HomeFragmentDirections.actionHomeFragmentToCreateNoteFragment(
+                        note
+                    )
+                )
             } else {
                 noteT = note
                 xCode = noteT.lock
@@ -58,9 +80,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             ?.observe(viewLifecycleOwner) {
                 if (xCode == it) {
                     GlobalScope.launch(Dispatchers.Main) {
-                        navigateSafe(HomeFragmentDirections.actionHomeFragmentToCreateNoteFragment(
-                            note = noteT))
-                        xCode = null
+                        navigateSafe(
+                            HomeFragmentDirections.actionHomeFragmentToCreateNoteFragment(
+                                note = noteT
+                            )
+                        )
+
                     }
                 }
 
@@ -80,9 +105,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         itemTouchHelper.attachToRecyclerView(binding.noteRv)
     }
 
+    // TODO: handle this method in another class
     private fun removeFromRecycler() = object :
-        ItemTouchHelper.SimpleCallback(0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT or ItemTouchHelper.DOWN or ItemTouchHelper.UP) {
+        ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT or ItemTouchHelper.DOWN or ItemTouchHelper.UP
+        ) {
         override fun onMove(
             recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder,
@@ -107,7 +135,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 snack.addCallback(object : Snackbar.Callback() {
                     override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
                         if (event == DISMISS_EVENT_TIMEOUT) {
-                            deleteFromDB(item.id)
+                            mViewModel.delete(item.id)
                         }
                     }
                 })
@@ -115,30 +143,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             }
 
         }
-    }
-
-    private fun deleteFromDB(id: Int) {
-        mViewModel.apply {
-            observe(mViewModel.viewState) {
-                when (it) {
-                    is HomeAction.OnRemove -> toast("${it.id} ")
-                    else -> {}
-                }
-            }
-        }.delete(id)
-    }
-
-    private fun getAllNotes() {
-        mViewModel.getAllData()
-        mViewModel.viewState.onEach { action ->
-            when (action) {
-                is HomeAction.GetNoteList -> {
-                    notesList=action.noteList.toMutableList()
-                    notesAdapter.noteList = notesList
-                }
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
     }
 
     private fun navigateToCreateNote() {

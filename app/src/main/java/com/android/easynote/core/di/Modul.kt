@@ -2,7 +2,6 @@ package com.android.easynote.core.di
 
 import android.app.Application
 import androidx.room.Room
-import com.android.easynote.core.helpers.AndroidSortNotes
 import com.android.easynote.data.Repo.LocalRepo
 import com.android.easynote.utils.Constant.DB
 import com.android.easynote.data.local.NoteDatabase
@@ -31,7 +30,6 @@ val notesModule = module {
     single { provideDataBase(androidApplication()) }
     single { provideDao(get()) }
     factory { LocalRepo(get()) }
-    factory {AndroidSortNotes()}
     factory { ColorAdapter(androidApplication()) }
 
 }
@@ -43,9 +41,8 @@ val adaptersModule= module{
     factory { NotesAdapter() }
 }
 val useCaseModule= module{
-    factory{ GetAllNotesUseCase(get(),get()) }
+    factory{ GetAllNotesUseCase(get()) }
     factory{ InsertNoteUseCase(get())}
     factory{ DeleteNoteUseCase(get())}
     factory{ EditNoteUseCase(get()) }
-
 }

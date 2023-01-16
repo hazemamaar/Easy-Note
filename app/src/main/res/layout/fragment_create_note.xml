@@ -155,8 +155,9 @@
         app:fabSize="normal"
         android:backgroundTint="@color/blueDark"
         app:layout_constraintBottom_toTopOf="@+id/add_img_record"
+        app:srcCompat="@drawable/record"
         app:layout_constraintEnd_toEndOf="@+id/add_img_record" />
-<!--        app:srcCompat="@drawable/ic_add_alarm_black_24dp" -->
+
 
 
 
@@ -191,8 +192,9 @@
         app:layout_constraintBottom_toTopOf="@+id/add_record_fab"
         app:layout_constraintEnd_toEndOf="@+id/add_record_fab"
         app:layout_constraintStart_toStartOf="@+id/add_record_fab"
+        app:srcCompat="@drawable/add_photo"
        />
-<!--    app:srcCompat="@drawable/ic_person_add_black_24dp"-->
+
     <!--Action name text for the add person button-->
     <!--Make sure that you are constraining this Text
          to the add Person FAB button-->
@@ -201,7 +203,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Add Person"
+        android:text="Add Photo"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/add_image_fab"
         app:layout_constraintEnd_toStartOf="@+id/add_image_fab"

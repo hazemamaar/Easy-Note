@@ -17,6 +17,5 @@ class HomeViewModel(private val GetAllUseCase: GetAllNotesUseCase,private val de
         delete.invoke(params = id, coroutineScope = viewModelScope){
             produce(HomeAction.OnRemove(it))
         }
-
     }
 }
