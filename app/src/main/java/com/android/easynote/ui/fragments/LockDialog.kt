@@ -2,7 +2,6 @@ package com.android.easynote.ui.fragments
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,23 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.android.easynote.R
-import com.android.easynote.core.extention.navigateSafe
-import com.android.easynote.core.extention.popBack
-import com.android.easynote.core.extention.popUpCurrentFragment
+import androidx.navigation.fragment.navArgs
 import com.android.easynote.core.extention.toast
 import com.android.easynote.databinding.PopupLockLayoutBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
-class LockDialog : DialogFragment()  {
+class LockDialog : DialogFragment() {
     private var _binding: PopupLockLayoutBinding? = null
     private val binding get() = _binding!!
-    private lateinit var sLockCode:String
+    private lateinit var sLockCode: String
+    private val args: LockDialogArgs by navArgs()
+
     @SuppressLint("UseGetLayoutInflater")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = PopupLockLayoutBinding.inflate(LayoutInflater.from(requireContext()))
@@ -40,6 +35,9 @@ class LockDialog : DialogFragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (args.type) {
+            binding.lockBtn.text = "UnLock"
+        }
         binding.apply {
             lockBtn.setOnClickListener {
                 val code = codeLock.text
@@ -71,8 +69,6 @@ class LockDialog : DialogFragment()  {
         _binding = null
         super.onDestroy()
     }
-
-
 
 
 }

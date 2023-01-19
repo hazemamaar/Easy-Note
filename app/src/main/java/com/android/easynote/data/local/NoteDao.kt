@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Query("SELECT * FROM notes ORDER BY id DESC")
-     fun getAllNotes(): List<NoteDto>
+     fun getAllNotes(): Flow<List<NoteDto>>
 
     @Query("SELECT * FROM notes WHERE id = :id")
     suspend fun getSpecificNote(id: Int): NoteDto
@@ -26,4 +26,7 @@ interface NoteDao {
 
     @Update
     suspend fun updateNotes(note: NoteDto) :Int
+
+    @Query("SELECT * FROM notes WHERE title LIKE '%' || :searchQuery || '%' ")
+    fun searchByTitleOrDescription(searchQuery: String): Flow<List<NoteDto>>
 }

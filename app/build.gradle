@@ -56,6 +56,9 @@ dependencies {
 
     //roomDB
     implementation "androidx.room:room-runtime:2.4.3"
+    implementation 'androidx.test:monitor:1.5.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.3'
+    androidTestImplementation 'junit:junit:4.12'
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
 
@@ -78,7 +81,8 @@ dependencies {
 
     //imagePicker
     implementation 'com.github.dhaval2404:imagepicker:2.1'
-
+// livedata
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
 }
 kapt {
     correctErrorTypes = true

@@ -1,6 +1,6 @@
 package com.android.easynote.ui.fragments.home
 
-import androidx.lifecycle.lifecycleScope
+import android.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,8 +17,6 @@ import com.android.easynote.ui.adapter.NotesAdapter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 
 
@@ -38,7 +36,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         removeItemTouch()
         editNotes()
         subscribeToObservers()
+
+        binding.searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(search: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(search: String?): Boolean {
+                mViewModel.onSearchQueryChanged(search.toString())
+                return true
+            }
+        })
     }
+
 
     private fun subscribeToObservers() {
         mViewModel.apply {
@@ -50,11 +62,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun handleUiState(action: HomeAction) {
         when (action) {
-            is HomeAction.GetNoteList ->  {
-            notesList = action.noteList.toMutableList()
-            notesAdapter.noteList = notesList
-        }
+            is HomeAction.GetNoteList -> {
+                 notesList = action.noteList.toMutableList()
+                notesAdapter.noteList = notesList
+            }
             is HomeAction.OnRemove -> TODO()
+            is HomeAction.OnSearchByTitle -> {
+                notesList = action.notes.toMutableList()
+                notesAdapter.noteList = notesList
+            }
             else -> {}
         }
     }
@@ -72,8 +88,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 noteT = note
                 xCode = noteT.lock
                 note.lock.toString().log("hazzzzz")
-                navigateSafe(HomeFragmentDirections.actionHomeFragmentToLockDialog())
-
+                navigateSafe(HomeFragmentDirections.actionHomeFragmentToLockDialog(true))
             }
         }
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<String>("key")
@@ -85,8 +100,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                                 note = noteT
                             )
                         )
-
+                        xCode = null
                     }
+                }else{
+                    toast("Password not match")
                 }
 
             }

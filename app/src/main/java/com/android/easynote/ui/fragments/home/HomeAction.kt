@@ -7,6 +7,6 @@ sealed class HomeAction: Action {
  data class GetNoteList(
      val noteList: List<NoteDto>
  ): HomeAction()
-    object OnBackButton : HomeAction()
+    data class OnSearchByTitle(val notes: List<NoteDto>) : HomeAction()
     data class OnRemove(val id : Int) : HomeAction()
 }

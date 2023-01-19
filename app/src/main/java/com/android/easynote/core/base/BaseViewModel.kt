@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
 
@@ -20,4 +21,5 @@ abstract class BaseViewModel<T : Action> : ViewModel() {
             nextAction.emit(t)
         }
     }
+
 }

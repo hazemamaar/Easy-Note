@@ -1,7 +1,7 @@
 package com.android.easynote.domain
 
 import com.android.easynote.core.base.BaseLocalUseCase
-import com.android.easynote.data.Repo.LocalRepo
+import com.android.easynote.data.repo.LocalRepo
 import com.android.easynote.data.entities.NoteDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
