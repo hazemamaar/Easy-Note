@@ -1,5 +1,6 @@
 # Easy-Note
-🗒️ Simple Offline Note App helps to to create your notes. You can 📝 edit , ❌ delete , lock and pin notes too. 
+🗒️ Simple Offline Note App helps to to create your notes. You can 📝 edit , ❌ delete , lock and pin notes too.           
+ 
 App respects its Base (Fragment , Activity , ViewMode , UseCase)
 
 ## technology 
