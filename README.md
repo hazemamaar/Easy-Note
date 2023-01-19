@@ -1,5 +1,5 @@
 # Easy-Note
-🗒️ Simple Offline Note App helps to to create your notes. You can 📝 edit , ❌ delete , lock and pin notes too.
+🗒️ Simple Offline Note App helps to to create your notes. You can 📝 edit , ❌ delete , lock and pin notes too. 
 App respects its Base (Fragment , Activity , ViewMode , UseCase)
 
 ## technology 
@@ -15,13 +15,13 @@ App respects its Base (Fragment , Activity , ViewMode , UseCase)
 
 # Screenshots
 
-<img src="https://user-images.githubusercontent.com/62269304/213454740-c55264b7-d016-4d34-a60f-0ea0d485f019.jpg" width="200">&nbsp;   
-<img src="https://user-images.githubusercontent.com/62269304/213455245-eb1ae173-366f-419b-aa7a-741b575a5ee9.jpg" width="200">&nbsp;   
-<img src="https://user-images.githubusercontent.com/62269304/213455362-3ac157d7-56bc-49f2-aa55-f49ec949c628.jpg" width="200">&nbsp;   
+<img src="https://user-images.githubusercontent.com/62269304/213454740-c55264b7-d016-4d34-a60f-0ea0d485f019.jpg" width="200">&nbsp;  
+<img src="https://user-images.githubusercontent.com/62269304/213455245-eb1ae173-366f-419b-aa7a-741b575a5ee9.jpg" width="200">&nbsp;  
+<img src="https://user-images.githubusercontent.com/62269304/213455362-3ac157d7-56bc-49f2-aa55-f49ec949c628.jpg" width="200">&nbsp;  
 
-<img src="https://user-images.githubusercontent.com/62269304/213455385-c47c2e62-61da-46c5-b8e2-96d519b7da91.jpg" width="200">&nbsp;   
-<img src="https://user-images.githubusercontent.com/62269304/213455403-90a1bf3f-22bd-401f-96e6-c85c9231c108.jpg" width="200">&nbsp;   
-<img src="https://user-images.githubusercontent.com/62269304/213455417-d1f52a4d-03be-4684-a1fa-d0f3689a6832.jpg" width="200">&nbsp;   
+<img src="https://user-images.githubusercontent.com/62269304/213455385-c47c2e62-61da-46c5-b8e2-96d519b7da91.jpg" width="200">&nbsp;  
+<img src="https://user-images.githubusercontent.com/62269304/213455403-90a1bf3f-22bd-401f-96e6-c85c9231c108.jpg" width="200">&nbsp;  
+<img src="https://user-images.githubusercontent.com/62269304/213455417-d1f52a4d-03be-4684-a1fa-d0f3689a6832.jpg" width="200">&nbsp;  
 
 ## Built With
 
