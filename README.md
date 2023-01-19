@@ -15,13 +15,13 @@ App respects its Base (Fragment , Activity , ViewMode , UseCase)
 
 # Screenshots
 
-<img src="https://user-images.githubusercontent.com/62269304/213454740-c55264b7-d016-4d34-a60f-0ea0d485f019.jpg" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62269304/213455245-eb1ae173-366f-419b-aa7a-741b575a5ee9.jpg" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62269304/213455362-3ac157d7-56bc-49f2-aa55-f49ec949c628.jpg" width="200">&nbsp;
+<img src="https://user-images.githubusercontent.com/62269304/213454740-c55264b7-d016-4d34-a60f-0ea0d485f019.jpg" width="200">&nbsp;   
+<img src="https://user-images.githubusercontent.com/62269304/213455245-eb1ae173-366f-419b-aa7a-741b575a5ee9.jpg" width="200">&nbsp;   
+<img src="https://user-images.githubusercontent.com/62269304/213455362-3ac157d7-56bc-49f2-aa55-f49ec949c628.jpg" width="200">&nbsp;   
 
-<img src="https://user-images.githubusercontent.com/62269304/213455385-c47c2e62-61da-46c5-b8e2-96d519b7da91.jpg" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62269304/213455403-90a1bf3f-22bd-401f-96e6-c85c9231c108.jpg" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62269304/213455417-d1f52a4d-03be-4684-a1fa-d0f3689a6832.jpg" width="200">&nbsp;
+<img src="https://user-images.githubusercontent.com/62269304/213455385-c47c2e62-61da-46c5-b8e2-96d519b7da91.jpg" width="200">&nbsp;   
+<img src="https://user-images.githubusercontent.com/62269304/213455403-90a1bf3f-22bd-401f-96e6-c85c9231c108.jpg" width="200">&nbsp;   
+<img src="https://user-images.githubusercontent.com/62269304/213455417-d1f52a4d-03be-4684-a1fa-d0f3689a6832.jpg" width="200">&nbsp;   
 
 ## Built With
 
@@ -36,4 +36,4 @@ App respects its Base (Fragment , Activity , ViewMode , UseCase)
 * [Room](https://developer.android.com/jetpack/androidx/releases/room) - The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
 * [Glide](https://github.com/bumptech/glide) - It is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
 * [Koin](https://insert-koin.io/docs/quickstart/android/) - It is arguably the most used Dependency Injection, or DI, framework for Android. Many Android projects use Dagger to simplify building and providing dependencies across the app. It gives you the ability to create specific scopes, modules, and components, where each forms a piece of a puzzle: The dependency graph.
-* [Clean Architecture](https://www.raywenderlich.com/3595916-clean-architecture-tutorial-for-android-getting-started) - Applying Clean Architecture , Solid Principles and use cases  to build a robust, maintainable, and testabl
+* [Clean Architecture](https://www.raywenderlich.com/3595916-clean-architecture-tutorial-for-android-getting-started) - Applying Clean Architecture , Solid Principles and use cases  to build a robust, maintainable, and testable
