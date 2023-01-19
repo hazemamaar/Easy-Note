@@ -98,7 +98,7 @@
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="@dimen/_22ssp"
+        android:textSize="@dimen/_16ssp"
         app:layout_constraintTop_toBottomOf="@id/choiceColor_rv"
         tools:ignore="LabelFor"
         tools:layout_editor_absoluteX="19dp" />
@@ -113,7 +113,7 @@
         android:hint="Enter Node"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintTop_toBottomOf="@id/title"
         tools:ignore="LabelFor"
         android:layout_marginStart="@dimen/_10sdp"
@@ -134,79 +134,17 @@
             android:visibility="gone"
             android:contentDescription="Drop_Your_Image" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/add_img_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Actions"
-        app:icon="@drawable/ic_add"
-        android:backgroundTint="@color/blueDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_record_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:fabSize="normal"
-        android:backgroundTint="@color/blueDark"
-        app:layout_constraintBottom_toTopOf="@+id/add_img_record"
-        app:srcCompat="@drawable/record"
-        app:layout_constraintEnd_toEndOf="@+id/add_img_record" />
-
-
-
-
-    <!--Action name text for the add alarm button-->
-    <!--Make sure that you are constraining this
-        Text to the add Alarm FAB button-->
-    <TextView
-        android:id="@+id/add_record_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Add Record"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/add_record_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_record_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_record_fab" />
-
-    <!--Floating action button for add person-->
-    <!--Make sure that you are constraining this button
-        to the add Alarm FAB button-->
-    <!--Make sure to add backgroundTint attribute to match
-         the entire application color-->
-    <!--because after changing the base application theme
-         the color of the FAB is set Blue as default-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_image_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_margin="@dimen/_20sdp"
         android:backgroundTint="@color/blueDark"
         app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/add_record_fab"
-        app:layout_constraintEnd_toEndOf="@+id/add_record_fab"
-        app:layout_constraintStart_toStartOf="@+id/add_record_fab"
-        app:srcCompat="@drawable/add_photo"
-       />
 
-    <!--Action name text for the add person button-->
-    <!--Make sure that you are constraining this Text
-         to the add Person FAB button-->
-    <TextView
-        android:id="@+id/add_image_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Add Photo"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/add_image_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_image_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_image_fab" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/add_photo"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

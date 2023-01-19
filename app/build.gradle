@@ -70,9 +70,6 @@ dependencies {
     implementation 'io.github.chaosleung:pinview:1.4.4'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
-    //canary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
-
     //lottie for animation
     implementation 'com.airbnb.android:lottie:4.2.2'
 

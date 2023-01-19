@@ -29,7 +29,6 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
     EasyPermissions.PermissionCallbacks,
     EasyPermissions.RationaleCallbacks {
     private val colorAdapter: ColorAdapter by inject()
-    private var isAllFabVisible: Boolean = false
     private var color: String? = BACKGROUND_CARD_COLOR
     private var pinValue: Int = PIN
     override val mViewModel: OperationsViewModel
@@ -49,28 +48,16 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
         getLockCode()
         doneEditOrCreate()
         onEditNote()
-        allFabGone()
         binding.addImageFab.setOnClickListener {
             pickImageFromGallery()
         }
-        binding.addImgRecord.shrink()
-        binding.addImgRecord.setOnClickListener {
-            if (!isAllFabVisible) {
-                allFabVisible()
-                binding.addImgRecord.extend()
-            } else {
-                allFabGone()
-                binding.addImgRecord.shrink()
-            }
-
-        }
         binding.pin.setOnClickListener {
-            if (pinValue==1){
+            pinValue = if(pinValue == 1){
                 toast("this note not pinned")
-                pinValue =0
+                0
             }else {
                 toast("this note pinned")
-                pinValue = 1
+                1
             }
         }
         binding.apply {
@@ -124,7 +111,7 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
             pin = pinValue,
             lock = lockCode,
             noteText = binding.notesDescription.text.toString(),
-            imgPath = selectedImagePath,
+            imgPath = selectedImagePath
         )
         if (args.note.id != 0) {
             val notes = note.copy(id = args.note.id)
@@ -145,13 +132,26 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
 
     private fun handleUiState(action: OperationsAction) {
         when (action) {
-            is OperationsAction.EditNote -> if (action.editId >= 1) snackBar("EditDone")
-            is OperationsAction.CreateNote -> if (action.insertId >= 1) snackBar("AddDone")
+            is OperationsAction.EditNote -> if (action.editId >= 1) {
+                snackBar("EditDone")
+                popBack()}
+            is OperationsAction.CreateNote -> if (action.insertId >= 1) {snackBar("AddDone")
+                popBack()}
         }
     }
 
+//    private fun hasReadStoragePerm(): Boolean {
+//        return EasyPermissions.hasPermissions(
+//            requireContext(),
+//            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+//            android.Manifest.permission.CAMERA,
+//            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            android.Manifest.permission.ACCESS_COARSE_LOCATION
+//        )
+//    }
+
+
     private fun pickImageFromGallery() {
-        "picker is ready".log("hazem")
         ImagePicker.with(this)
             .compress(1024)
             .maxResultSize(
@@ -163,21 +163,6 @@ class OperationsFragment : BaseFragment<FragmentCreateNoteBinding, OperationsVie
             }
     }
 
-    private fun allFabGone() {
-        binding.addImageFab.gone()
-        binding.addRecordFab.gone()
-        binding.addRecordText.gone()
-        binding.addImageText.gone()
-        isAllFabVisible = false
-    }
-
-    private fun allFabVisible() {
-        binding.addImageFab.visible()
-        binding.addRecordFab.visible()
-        binding.addRecordText.visible()
-        binding.addImageText.visible()
-        isAllFabVisible = true
-    }
 
     private val registerResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

@@ -66,7 +66,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                  notesList = action.noteList.toMutableList()
                 notesAdapter.noteList = notesList
             }
-            is HomeAction.OnRemove -> TODO()
+            is HomeAction.OnRemove -> {
+                if (action.id==1)
+                    toast("Delete Done")
+            }
             is HomeAction.OnSearchByTitle -> {
                 notesList = action.notes.toMutableList()
                 notesAdapter.noteList = notesList
@@ -102,8 +105,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                         )
                         xCode = null
                     }
-                }else{
-                    toast("Password not match")
                 }
 
             }
