@@ -8,7 +8,7 @@ App respects its Base (Fragment , Activity , ViewMode , UseCase)
 - coroutines, flow, and Sharedflow to fire data
 - channel to send action
 - repository pattern and use case
-- dependency injection (dagger-hilt)
+- dependency injection (Koin)
 - clean architecture and clean code
 - navigation components
 - MVI (Model-View-Intent)  Base on MVVM(Model-View-View-Model) 
